@@ -3,16 +3,17 @@ from flask import make_response
 from flask import redirect
 from flask import url_for
 from flask import abort
+from flask import render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "<h1>Hello World!</h1>"
+    return render_template('index.html')
 
 @app.route('/user/<name>')
 def user(name):
-    return f"<h1>Hello, {name}!</h1><img src='http://helloflask.com/totoro.gif'>"
+    return render_template('user.html',name=name)
 
 @app.route('/cookie')
 def cookie():
