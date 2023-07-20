@@ -7,10 +7,19 @@ from flask import render_template
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from datetime import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 moment= Moment(app)
+
+app.config['SECRET_KEY'] = 'WHEN YOU SEE WOULD DIE'
+
+class NameForm(FlaskForm):
+    name = StringField('What is your name?', validators = [DataRequired()])
+    submit = SubmitField ('Submit...')
 
 @app.route('/')
 def index():
